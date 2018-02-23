@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+<ui:composition template="/templates/templatePrincipal.xhtml">
+	<ui:define name="corpo">
+		<p:carousel numVisible="1" autoPlayInterval="2000" circular="true"
+			effect="easeInOutCirc" effectDuration="2000"
+			itemStyle="height:200px;width:600px;" headerText="Produtos em Baixa">
+			<p:tab title="Godfather Part I">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage library="img" name="home.png" height="180px;" />
+					<h:outputText value="The story begins as Don Vito ..." />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Godfather Part II">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage library="img" name="mail.png" />
+					<h:outputText value="Francis Ford Coppola's ..." />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Godfather Part II">
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:graphicImage library="img" name="key.png" />
+					<h:outputText value="Francis Ford Coppola's ..." />
+				</h:panelGrid>
+			</p:tab>
+
+		</p:carousel>
+		<p:carousel autoPlayInterval="2000" numVisible="1"
+			effect="easeInStrong" circular="true"
+			itemStyle="width:200px; height:200px;" vertical="true">
+			<p:graphicImage library="img" name="html.png" />
+			<p:graphicImage library="img" name="keys.png" />
+			<p:graphicImage library="img" name="excel.png" />
+			<p:graphicImage library="img" name="keys.png" />
+		</p:carousel>
+		<p:dataGrid var="car" value="#{cidadeBeanView.list}" columns="3"
+			rows="4" paginator="true"
+			paginatorTemplate=" {FirstPageLink} {NextPageLink}
+{PageLinks}
+{PreviousPageLink}
+{LastPageLink} 
+">
+			<p:column>
+				<p:panel header="#{car.cid_descricao}">
+					<h:panelGrid columns="1">
+						<p:graphicImage library="img" name="keys.png" height="50"
+							width="50" />
+						<h:outputText value="#{car.provincia.prov_nome}"
+							styleClass="text-align:center;" />
+					</h:panelGrid>
+				</p:panel>
+			</p:column>
+			<f:facet name="footer">
+				 Total : 9 
+			</f:facet>
+		</p:dataGrid>
+
+		<p:galleria effect="slide" effectDuration="1000">
+
+			<p:graphicImage library="img" name="html.png" alt="falha de texto" />
+			<p:graphicImage library="img" name="keys.png" alt="falha de texto" />
+			<p:graphicImage library="img" name="excel.png" alt="falha de texto" />
+			<p:graphicImage library="img" name="keys.png" alt="falha de texto" />
+		</p:galleria>
+
+
+		<p:tabView orientation="left">
+			<p:tab title="Tab One">
+				<h:outputText value="Lorem" />
+			</p:tab>
+			<p:tab title="Tab Two">
+				<h:outputText value="Ipsum" />
+			</p:tab>
+			<p:tab title="Tab Three">
+				<h:outputText value="Dolor" />
+			</p:tab>
+		</p:tabView>
+		<p:spacer height="20"/>
+		<p:schedule value="#{scheduleBean.model}" view="gendaDay" />
+		
+		<p:editor controls="bold italic underline strikethrough" />
+		
+		<p:panel header="Header Text" closable="true" closeSpeed="2000">
+			<f:facet name="footer">
+				<h:outputText value="Footer Text" />
+			</f:facet>
+			
+//Child components here... zf afa sa sd asd as  
+</p:panel>
+		
+
+	</ui:define>
+</ui:composition>
+</html>

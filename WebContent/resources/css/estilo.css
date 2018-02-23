@@ -1,0 +1,104 @@
+@CHARSET "ISO-8859-1";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	font-family: arial, helvetic, sans-serif;	
+}
+
+
+.afastamento-top{
+	padding-top: 50px important!;
+}
+
+.tamanho-titulo{
+	font-size: 200%;
+	font-weight: bold;
+}
+
+
+.fundo{
+background-color:menu;
+          border: 2px solid menu;
+          
+	
+}
+.inform-login{
+	
+	display:block;
+	padding:20px; background-color:buttonhighlight; -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
+          border: 2px solid #ff8c8c;
+          z-index: 4000;
+}
+.loginform{
+	 background-color:menu; -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
+          padding:20px;
+}
+
+#corpo{
+	
+padding-left: 10px;
+	
+	
+	
+}
+
+.butaoMenu{
+	width: 90px;
+	font-weight:bold;
+	text-align:center;
+	border-radius:5px;
+	border: 1px solic ccc;
+	margin-bottom: 5px;
+}
+.posicao{
+	position: relative;
+}
+
+.desbloquear{
+	display: inline;
+	
+}
+#menupop {
+	position: absolute;
+	border: 1px solid #61cded;
+	top: 87px;
+	right: 180px;
+	height: 100px;
+	width: 190px;
+	
+	background-color: white;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding: 2px;
+}
+#barramenu{
+	position:absolute;
+	top:47px;
+	left:0px;
+	width:185px;
+	background-color:#c0c0c0;	
+	
+	webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	
+}
+#menupop a:hover {
+	background-color: #e5e5e5;
+}
+
+
+

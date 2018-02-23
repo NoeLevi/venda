@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></meta>
+	<title><ui:insert name="titulo">Venda</ui:insert></title>
+
+	<h:outputStylesheet name="bootstrap.css" library="css" />
+	<h:outputStylesheet name="bootstrap-grid.css" library="css" />
+
+	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+
+	<h:outputScript name="jquery.js" library="primefaces/jquery" />
+	<h:outputStylesheet name="estilo.css" library="css" />
+
+	<h:outputScript name="scripty.js" library="js" />
+</h:head>
+
+<h:body>
+
+
+	<div class="container-fluid" >
+
+		<div class="loginform"
+			style="margin-left: 35%; margin-right: 35%; margin-top: 15%; margin-bottom: 10%;">
+
+			<div class="col-sm-12">
+				<h:graphicImage library="img" name="logo1.png" />
+			</div>
+			<div class="col-sm-12">
+				<h:panelGroup rendered="#{!empty param.login_error}">
+
+					<h:outputLabel
+						rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message=='Bad credentials'}">
+						<span> Permissao Negada, login ou senha invalidade </span>
+					</h:outputLabel>
+
+					<h:outputLabel
+						rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message=='Maximum sessions of 1 for this principal exceeded'}">
+						<span>Voce esta logado a outra sessao </span>
+						<h:commandButton value="Encerrar Sessao" class="btn btn-success"
+							onclick="invalidarSession('#{request.contextPath}','/publico/invalidarSession');" />
+					</h:outputLabel>
+
+				</h:panelGroup>
+			</div>
+			<form id="formulario" method="post"
+				onsubmit="return validarSenhaLogin();"
+				action="#{request.contextPath}/j_spring_security_check">
+
+				<h:outputText styleClass="col-sm-12" value="Usuario" />
+				<p:inputText styleClass="col-md-12" type="text" name="j_username"
+					id="j_username" />
+				<h:outputText value="Senha" styleClass="col-sm-12" />
+				<p:password styleClass="col-sm-12" name="j_password" id="j_password"/>
+<p:spacer  height="10" width="100%"/>
+				<button type="submit" style="width:100%;" class="btn btn-success">Entrar</button>
+
+
+			</form>
+		</div>
+	</div>
+	<script>
+		$('#j_username').focus();
+	</script>
+</h:body>
+</html>
