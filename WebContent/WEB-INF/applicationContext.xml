@@ -21,6 +21,9 @@
 
 	<mvc:resources location="/resource/img" mapping="/resources/**"
 		cache-period="5000" />
+	<mvc:resources location="/resource/img/exploracao" mapping="/resources/img/**"
+		cache-period="5000" />
+	
 
 	<context:component-scan base-package="mz.com.venda.geral.controller" />
 	<context:component-scan base-package="mz.com.venda.controller" />
