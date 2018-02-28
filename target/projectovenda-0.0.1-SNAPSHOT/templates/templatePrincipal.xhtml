@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<sec:isAuthenticated>
+	<h:head>
+		<title><ui:insert name="titulo">Venda</ui:insert></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<h:outputScript name="jquery.js" library="primefaces/jquery"
+			id="jsJquery" />
+		<h:outputScript name="jquery-plugins.js" library="primefaces/jquery"
+			id="jsJqueryPlugin" />
+		<h:outputScript name="jquery.cookie.js" library="js"
+			id="jsJaqueryCookie" />
+
+		
+<h:outputStylesheet name="primefaces.css" library="primefaces"
+			id="jdPrimeCss" />
+		<h:outputStylesheet name="bootstrap-grid.min.css" library="css" />
+
+		<h:outputStylesheet name="bootstrap.min.css" library="css"  />
+		
+		<h:outputStylesheet name="jquery-ui.css"
+			library="primefaces/jquery/ui" id="jsJqueryUi" />
+
+		<h:outputScript name="jquery.maskMoney.min.js" library="js"
+			id="jsMaskMoneySistema" />
+		<h:outputScript name="jquery.maskedinput.js" library="js"
+			id="jsMaskInputSistema" />
+		<h:outputScript name="primefaces.js" library="primefaces" id="jsPrime" />
+
+
+		<h:outputScript name="scripty.js" library="js" id="jsScriptSistema" />
+		<h:outputScript name="jsf.js" library="javax.faces" />
+
+
+		<h:outputScript name="bootstrap.min.js" library="js" />
+		<h:outputStylesheet name="estilo.css" library="css"
+			id="cssStiloSistema" />
+	</h:head>
+	<h:form id="formTemplate" prependId="false">
+		<h:body>
+			<script type="text/javascript" charset="UTF-8">
+				$.noConflict();
+				initTamplete();
+				ocultarMenu();
+				/* Bloqueia o F5 do teclado*/
+			</script>
+			<ui:include src="/templates/barraProgresso.xhtml"></ui:include>
+			<div id="msgError" class="error">
+				<p:growl id="msg" showDetail="false" sticky="false" redisplay="true"
+					autoUpdate="true" life="5000" />
+				<p:tooltip id="toolTipFocus" globalSelector="a,:input,:button"
+					showEvent="focus" hideEvent="blur" />
+
+
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="col-7 col-sm-6 col-md-8 " style=" height: 110px;">
+						<h:graphicImage library="img" name="logo1.png" 
+							height="100"
+							/>
+						<span class="text-success ">Venda Produto</span>
+					</div>
+					<div class="col-5 col-sm-6 col-md-4 inform-login" 
+						style=" padding-bottom: 5px;  height: 110px; padding:20px;" >
+
+						<span class="text-success">Usuario :</span>
+						#{entidadeBeanView.usuarioLogadoSecurity} <br /> Ult. Acesso:
+						<h:outputLabel id="saidaUltimoAcesso"
+							value="#{entidadeBeanView.ultimoAcesso}" styleClass="desbloquear">
+
+							<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy HH:mm:ss"
+								dateStyle="" timeStyle="full" timeZone="GMT+02:00" />
+						</h:outputLabel>
+						<div class="row">
+						<div class="col-md-7"><a href="#"
+							onclick="javascript:logout('#{request.contextPath}'); ">Sair</a></div>
+							<div class="col-md-5"> <span id="meuSistema"> <a href="#"
+							id="abrirMenupop"> <h:graphicImage library="img"
+									name="setabaixo.png">
+
+								</h:graphicImage></a>
+						</span></div></div>
+						
+						
+						<div id="menupop">
+							<sec:ifAnyGranted roles="MENSAGENS_ENVIAR_ACESSAR,  ADMIN">
+								<p:commandLink actionListener="#{mensagemBeanView.novo}"
+									onsuccess="enviarMsgDialog.show();" value="Enviar mensagem"
+									immediate="true" style="display:block;" id="enviarMensagem"
+									ajax="true" process="@this">
+
+									<p:ajax immediate="true" listener="#{mensagemBeanView.novo}" />
+
+								</p:commandLink>
+							</sec:ifAnyGranted>
+							<a href="#" onclick="alterarSenhaDialog.show()" id="alerarSenha"
+								style="display: block;"> <span id="spanAlterarSenha"
+								style="display: block;">Alterar Senha </span>
+							</a>
+						</div>
+
+					</div>
+					<div class="col-sm-12 col-md-12">
+						<div class="btn butaoMenu " id="iniciarmenu">
+							<h:graphicImage library="img" name="iconemenu.png" />
+							Menu
+						</div>
+						<div id="barramenu">
+
+							<p:tieredMenu id="tieredMenu"
+								style=" border:none; background:none; color:#000">
+
+								<sec:ifAnyGranted roles="CADASTRO_ACESSAR, ADMIN">
+
+									<p:submenu id="subMenuCadastro" label="Cadastros">
+										<sec:ifAnyGranted roles="CIDADE_ACESSAR,ADMIN">
+
+											<p:menuitem value="Cidade" id="menuCidade"
+												action="/cadastro/cad_cidade.js?faces-redirect=true"
+												ajax="true" immediate="true">
+
+											</p:menuitem>
+										</sec:ifAnyGranted>
+
+									</p:submenu>
+								</sec:ifAnyGranted>
+								<p:menuitem value="Inicio" id="menuinicio"
+									onclick="redirecionarPagina('#{request.contextPath}','/restrito/principal');"
+									ajax="true" />
+								<p:menuitem
+									onclick="javascript:logout('#{request.contextPath}');"
+									value="Sair" id="menuSair" ajax="true" />
+							</p:tieredMenu>
+
+						</div>
+					</div>
+
+
+
+
+				</div>
+<hr width="100%"/>
+
+				<div id="corpo">
+					<ui:insert name="corpo" />
+				</div>
+
+
+
+
+				<p:dialog widgetVar="enviarMsgDialog" id="enviarMsgDialog"
+					width="300" modal="true" resizable="false" height="170"
+					header="Enviar Mensagem" dynamic="true" appendToBody="false">
+				smS
+			</p:dialog>
+
+				<p:dialog widgetVar="alterarSenhaDialog" id="alterarSenhaDialog"
+					width="240" modal="true" resizable="false" height="170"
+					header="Alterar Senha" dynamic="true" appendToBody="false">
+				corpo
+			</p:dialog>
+			</div>
+			<script type="text/javascript" charset="UTF-8">
+				$("#abrirMenupop").click(function() {
+					$("#menupop").show('slow').mouseleave(function() {
+						if ($("#menupop").is(":visible")) {
+							$("#menupop").hide("slow");
+						}
+					});
+
+				});
+			</script>
+		</h:body>
+	</h:form>
+</sec:isAuthenticated>
+
+</html>
